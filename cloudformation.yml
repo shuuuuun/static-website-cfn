@@ -19,7 +19,7 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
     DeletionPolicy: Retain
-  BucketPolicy:
+  BucketPolicyStg:
     Type: 'AWS::S3::BucketPolicy'
     Properties:
       PolicyDocument:
@@ -43,7 +43,7 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
     DeletionPolicy: Retain
-  BucketPolicy:
+  BucketPolicyProd:
     Type: 'AWS::S3::BucketPolicy'
     Properties:
       PolicyDocument:
