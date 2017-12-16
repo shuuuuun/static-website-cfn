@@ -17,14 +17,14 @@ Resources:
   # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/quickref-s3.html
   # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
   myS3Bucket:
-    Type: 'AWS::S3::Bucket'
+    Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub ${ProjectName}
       WebsiteConfiguration:
         IndexDocument: index.html
     DeletionPolicy: Retain
   BucketPolicyStg:
-    Type: 'AWS::S3::BucketPolicy'
+    Type: AWS::S3::BucketPolicy
     Properties:
       PolicyDocument:
         Id: MyPolicy
@@ -33,7 +33,7 @@ Resources:
           - Sid: PublicReadForGetBucketObjects
             Effect: Allow
             Principal: '*'
-            Action: 's3:GetObject'
+            Action: s3:GetObject
             Resource: !Join
               - ''
               - - 'arn:aws:s3:::'
@@ -71,8 +71,8 @@ Resources:
             QueryString: true
           Compress: true
         ViewerCertificate:
-          CloudFrontDefaultCertificate: 'true'
+          CloudFrontDefaultCertificate: true
         HttpVersion: http2
         DefaultRootObject: index.html
         Comment: !Sub ${Stage}
-        Enabled: 'true'
+        Enabled: true
