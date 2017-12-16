@@ -86,10 +86,14 @@ Resources:
           - GET
           - HEAD
           TargetOriginId: !Sub S3-Website-${ProjectName}-prod.s3-website-ap-northeast-1.amazonaws.com
+          DefaultTTL: 0
+          MinTTL: 0
+          MaxTTL: 0
           ForwardedValues:
-            QueryString: 'false'
+            QueryString: true
             Cookies:
-              Forward: none
+              Forward: all
           ViewerProtocolPolicy: allow-all
+          Compress: true
         ViewerCertificate:
           CloudFrontDefaultCertificate: 'true'
