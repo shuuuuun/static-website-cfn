@@ -50,14 +50,14 @@ Resources:
     Properties:
       DistributionConfig:
         Origins:
-        - DomainName: !Sub ${ProjectName}.s3-website-ap-northeast-1.amazonaws.com
-          Id: !Sub S3-Website-${ProjectName}.s3-website-ap-northeast-1.amazonaws.com
+        - DomainName: !Sub ${ProjectName}.s3-website-${AWS::Region}.amazonaws.com
+          Id: !Sub S3-Website-${ProjectName}.s3-website-${AWS::Region}.amazonaws.com
           # S3OriginConfig:
           #   OriginAccessIdentity: ''
           CustomOriginConfig:
             OriginProtocolPolicy: http-only
         DefaultCacheBehavior:
-          TargetOriginId: !Sub S3-Website-${ProjectName}.s3-website-ap-northeast-1.amazonaws.com
+          TargetOriginId: !Sub S3-Website-${ProjectName}.s3-website-${AWS::Region}.amazonaws.com
           ViewerProtocolPolicy: allow-all
           AllowedMethods:
           - GET
