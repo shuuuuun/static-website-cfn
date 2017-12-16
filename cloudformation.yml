@@ -6,6 +6,9 @@ Parameters:
   ProjectName:
     Type: String
     Default: static-website-sample-stg
+  Stage:
+    Type: String
+    Default: Staging
 
 Resources:
   ######
@@ -71,5 +74,5 @@ Resources:
           CloudFrontDefaultCertificate: 'true'
         HttpVersion: http2
         DefaultRootObject: index.html
-        Comment: Production
+        Comment: !Sub ${Stage}
         Enabled: 'true'
