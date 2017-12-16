@@ -1,0 +1,9 @@
+#!/bin/sh
+
+AWS_ACCOUNT_ID="000000000000"
+AWS_PROFILE="static-website-sample"
+AWS_REGION="us-east-1"
+ROLE="arn:aws:iam::$AWS_ACCOUNT_ID:role/LambdaRole"
+RUNTIME="nodejs6.10"
+HANDLER="index.handler"
+TIMEOUT="1"

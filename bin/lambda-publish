@@ -4,8 +4,9 @@ set -eu
 
 # TODO: 関数を指定できるようにする
 
-AWS_REGION="us-east-1"
-AWS_PROFILE="static-website-sample"
+ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+source "$ROOT_PATH/bin/lambda-env"
+
 FUNCTION_NAME="basic_auth"
 
 aws lambda publish-version \
