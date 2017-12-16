@@ -1,5 +1,11 @@
 # TODO: ちゃんと出来てないのでこのまま使わないほうがよいです
 AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: static-website-sample
+
 Resources:
   ######
   # S3
@@ -9,7 +15,7 @@ Resources:
   S3BucketStg:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: sample-stg
+      BucketName: !Sub ${ProjectName}-stg
       WebsiteConfiguration:
         IndexDocument: index.html
     DeletionPolicy: Retain
@@ -33,7 +39,7 @@ Resources:
   S3BucketProd:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: sample-prod
+      BucketName: !Sub ${ProjectName}-prod
       WebsiteConfiguration:
         IndexDocument: index.html
     DeletionPolicy: Retain
@@ -64,8 +70,8 @@ Resources:
   #   Properties:
   #     DistributionConfig:
   #       Origins:
-  #       - DomainName: sample-stg.s3-website-ap-northeast-1.amazonaws.com
-  #         Id: S3-Website-sample-stg.s3-website-ap-northeast-1.amazonaws.com
+  #       - DomainName: !Sub ${ProjectName}-stg.s3-website-ap-northeast-1.amazonaws.com
+  #         Id: !Sub S3-Website-${ProjectName}-stg.s3-website-ap-northeast-1.amazonaws.com
   #         S3OriginConfig:
   #           OriginAccessIdentity: ''
   #       Enabled: 'true'
@@ -75,7 +81,7 @@ Resources:
   #         AllowedMethods:
   #         - GET
   #         - HEAD
-  #         TargetOriginId: S3-Website-sample-stg.s3-website-ap-northeast-1.amazonaws.com
+  #         TargetOriginId: !Sub S3-Website-${ProjectName}-stg.s3-website-ap-northeast-1.amazonaws.com
   #         ForwardedValues:
   #           QueryString: 'false'
   #           Cookies:
