@@ -5,7 +5,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   ProjectName:
     Type: String
-    Default: static-website-sample
+    Default: static-website-sample-stg
 
 Resources:
   ######
@@ -13,10 +13,10 @@ Resources:
   ######
   # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/quickref-s3.html
   # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
-  S3BucketStg:
+  myS3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: !Sub ${ProjectName}-stg
+      BucketName: !Sub ${ProjectName}
       WebsiteConfiguration:
         IndexDocument: index.html
     DeletionPolicy: Retain
@@ -34,51 +34,27 @@ Resources:
             Resource: !Join
               - ''
               - - 'arn:aws:s3:::'
-                - !Ref S3BucketStg
+                - !Ref myS3Bucket
                 - /*
-      Bucket: !Ref S3BucketStg
-  S3BucketProd:
-    Type: 'AWS::S3::Bucket'
-    Properties:
-      BucketName: !Sub ${ProjectName}-prod
-      WebsiteConfiguration:
-        IndexDocument: index.html
-    DeletionPolicy: Retain
-  BucketPolicyProd:
-    Type: 'AWS::S3::BucketPolicy'
-    Properties:
-      PolicyDocument:
-        Id: MyPolicy
-        Version: 2012-10-17
-        Statement:
-          - Sid: PublicReadForGetBucketObjects
-            Effect: Allow
-            Principal: '*'
-            Action: 's3:GetObject'
-            Resource: !Join
-              - ''
-              - - 'arn:aws:s3:::'
-                - !Ref S3BucketProd
-                - /*
-      Bucket: !Ref S3BucketProd
+      Bucket: !Ref myS3Bucket
 
   ######
   # CloudFront
   ######
   # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/quickref-cloudfront.html
-  DistributionProd:
+  myDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
         Origins:
-        - DomainName: !Sub ${ProjectName}-prod.s3-website-ap-northeast-1.amazonaws.com
-          Id: !Sub S3-Website-${ProjectName}-prod.s3-website-ap-northeast-1.amazonaws.com
+        - DomainName: !Sub ${ProjectName}.s3-website-ap-northeast-1.amazonaws.com
+          Id: !Sub S3-Website-${ProjectName}.s3-website-ap-northeast-1.amazonaws.com
           # S3OriginConfig:
           #   OriginAccessIdentity: ''
           CustomOriginConfig:
             OriginProtocolPolicy: http-only
         DefaultCacheBehavior:
-          TargetOriginId: !Sub S3-Website-${ProjectName}-prod.s3-website-ap-northeast-1.amazonaws.com
+          TargetOriginId: !Sub S3-Website-${ProjectName}.s3-website-ap-northeast-1.amazonaws.com
           ViewerProtocolPolicy: allow-all
           AllowedMethods:
           - GET
