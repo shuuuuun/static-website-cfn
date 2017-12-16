@@ -6,7 +6,7 @@ set -eu
 # TODO: functions以下にある関数すべて作成する
 
 AWS_REGION="us-east-1"
-AWS_PROFILE="sample"
+AWS_PROFILE="static-website-sample"
 FUNCTION_NAME="basic_auth"
 RUNTIME="nodejs6.10"
 ROLE="arn:aws:iam::000000000000:role/LambdaRole"

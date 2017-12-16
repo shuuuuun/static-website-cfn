@@ -7,7 +7,7 @@ set -eu
 # TODO: bin/initとzip化など共通化
 
 AWS_REGION="us-east-1"
-AWS_PROFILE="sample"
+AWS_PROFILE="static-website-sample"
 FUNCTION_NAME="basic_auth"
 HANDLER="index.handler"
 TIMEOUT="1"

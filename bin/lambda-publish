@@ -5,7 +5,7 @@ set -eu
 # TODO: 関数を指定できるようにする
 
 AWS_REGION="us-east-1"
-AWS_PROFILE="sample"
+AWS_PROFILE="static-website-sample"
 FUNCTION_NAME="basic_auth"
 
 aws lambda publish-version \

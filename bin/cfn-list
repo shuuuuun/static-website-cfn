@@ -3,8 +3,8 @@
 set -eu
 
 aws cloudformation list-stacks \
-  --profile sample
+  --profile static-website-sample
 
 # 詳細情報
 # aws cloudformation describe-stacks \
-#   --profile sample
+#   --profile static-website-sample

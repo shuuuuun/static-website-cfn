@@ -3,5 +3,5 @@
 set -eu
 
 aws cloudformation cancel-update-stack \
-  --profile sample \
+  --profile static-website-sample \
   --stack-name static-website

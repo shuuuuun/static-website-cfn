@@ -3,7 +3,7 @@
 set -eu
 
 aws cloudformation create-stack \
-  --profile sample \
+  --profile static-website-sample \
   --stack-name static-website \
   --region ap-northeast-1 \
   --template-body file://cloudformation.yml
