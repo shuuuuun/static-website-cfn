@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -eu
+
+# TODO: 関数を指定できるようにする
+
+AWS_REGION="us-east-1"
+AWS_PROFILE="sample"
+FUNCTION_NAME="basic_auth"
+
+aws lambda publish-version \
+  --region $AWS_REGION \
+  --profile $AWS_PROFILE \
+  --function-name $FUNCTION_NAME

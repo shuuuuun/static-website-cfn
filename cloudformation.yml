@@ -1,0 +1,85 @@
+# TODO: ちゃんと出来てないのでこのまま使わないほうがよいです
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  ######
+  # S3
+  ######
+  # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/quickref-s3.html
+  # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
+  S3BucketStg:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: sample-stg
+      WebsiteConfiguration:
+        IndexDocument: index.html
+    DeletionPolicy: Retain
+  BucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      PolicyDocument:
+        Id: MyPolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Join
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref S3BucketStg
+                - /*
+      Bucket: !Ref S3BucketStg
+  S3BucketProd:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: sample-prod
+      WebsiteConfiguration:
+        IndexDocument: index.html
+    DeletionPolicy: Retain
+  BucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      PolicyDocument:
+        Id: MyPolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Join
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref S3BucketProd
+                - /*
+      Bucket: !Ref S3BucketProd
+
+  ######
+  # CloudFront
+  ######
+  # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/quickref-cloudfront.html
+  # myDistribution:
+  #   Type: AWS::CloudFront::Distribution
+  #   Properties:
+  #     DistributionConfig:
+  #       Origins:
+  #       - DomainName: sample-stg.s3-website-ap-northeast-1.amazonaws.com
+  #         Id: S3-Website-sample-stg.s3-website-ap-northeast-1.amazonaws.com
+  #         S3OriginConfig:
+  #           OriginAccessIdentity: ''
+  #       Enabled: 'true'
+  #       Comment: Staging
+  #       DefaultRootObject: index.html
+  #       DefaultCacheBehavior:
+  #         AllowedMethods:
+  #         - GET
+  #         - HEAD
+  #         TargetOriginId: S3-Website-sample-stg.s3-website-ap-northeast-1.amazonaws.com
+  #         ForwardedValues:
+  #           QueryString: 'false'
+  #           Cookies:
+  #             Forward: none
+  #         ViewerProtocolPolicy: allow-all
+  #       ViewerCertificate:
+  #         CloudFrontDefaultCertificate: 'true'

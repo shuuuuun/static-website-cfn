@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -eu
+
+aws cloudformation list-stacks \
+  --profile sample
+
+# 詳細情報
+# aws cloudformation describe-stacks \
+#   --profile sample

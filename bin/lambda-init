@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -eu
+
+# TODO: 設定をproject.json/functions.jsonから読み込む
+# TODO: functions以下にある関数すべて作成する
+
+AWS_REGION="us-east-1"
+AWS_PROFILE="sample"
+FUNCTION_NAME="basic_auth"
+RUNTIME="nodejs6.10"
+ROLE="arn:aws:iam::000000000000:role/LambdaRole"
+HANDLER="index.handler"
+
+ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+func_dir="$ROOT_PATH/functions/$FUNCTION_NAME"
+tmp_file="tmp.zip"
+
+cd "$ROOT_PATH"
+zip -r "$tmp_file" "$func_dir"
+aws lambda create-function \
+  --region $AWS_REGION \
+  --profile $AWS_PROFILE \
+  --function-name $FUNCTION_NAME \
+  --runtime $RUNTIME \
+  --role $ROLE \
+  --handler $HANDLER \
+  --zip-file fileb://$tmp_file

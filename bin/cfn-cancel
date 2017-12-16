@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -eu
+
+aws cloudformation cancel-update-stack \
+  --profile sample \
+  --stack-name static-website

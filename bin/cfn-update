@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -eu
+
+aws cloudformation update-stack \
+  --profile sample \
+  --stack-name static-website \
+  --region ap-northeast-1 \
+  --template-body file://cloudformation.yml
