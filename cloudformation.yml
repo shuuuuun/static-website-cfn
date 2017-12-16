@@ -77,23 +77,23 @@ Resources:
           #   OriginAccessIdentity: ''
           CustomOriginConfig:
             OriginProtocolPolicy: http-only
-        Enabled: 'true'
-        Comment: Production
-        HttpVersion: http2
-        DefaultRootObject: index.html
         DefaultCacheBehavior:
+          TargetOriginId: !Sub S3-Website-${ProjectName}-prod.s3-website-ap-northeast-1.amazonaws.com
+          ViewerProtocolPolicy: allow-all
           AllowedMethods:
           - GET
           - HEAD
-          TargetOriginId: !Sub S3-Website-${ProjectName}-prod.s3-website-ap-northeast-1.amazonaws.com
-          DefaultTTL: 0
           MinTTL: 0
           MaxTTL: 0
+          DefaultTTL: 0
           ForwardedValues:
-            QueryString: true
             Cookies:
               Forward: all
-          ViewerProtocolPolicy: allow-all
+            QueryString: true
           Compress: true
         ViewerCertificate:
           CloudFrontDefaultCertificate: 'true'
+        HttpVersion: http2
+        DefaultRootObject: index.html
+        Comment: Production
+        Enabled: 'true'
