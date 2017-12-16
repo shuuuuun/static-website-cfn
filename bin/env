@@ -3,9 +3,9 @@
 PROFILE="static-website-sample"
 STACK_NAME="static-website"
 REGION="ap-northeast-1"
+CAPABILITIES="CAPABILITY_IAM"
 TEMPLATE_BODY="file://cloudformation.yml"
 
 echo "profile: $PROFILE"
 echo "stack_name: $STACK_NAME"
 echo "region: $REGION"
-echo "template_body: $TEMPLATE_BODY"

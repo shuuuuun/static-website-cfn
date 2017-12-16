@@ -9,4 +9,5 @@ aws cloudformation create-stack \
   --profile $PROFILE \
   --stack-name $STACK_NAME \
   --region $REGION \
+  --capabilities $CAPABILITIES \
   --template-body $TEMPLATE_BODY
