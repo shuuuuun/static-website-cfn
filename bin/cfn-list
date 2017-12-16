@@ -2,9 +2,12 @@
 
 set -eu
 
+BIN_PATH=`cd "$(dirname $0)" && pwd`
+source "$BIN_PATH/env"
+
 aws cloudformation list-stacks \
-  --profile static-website-sample
+  --profile $PROFILE
 
 # 詳細情報
 # aws cloudformation describe-stacks \
-#   --profile static-website-sample
+#   --profile $PROFILE

@@ -2,6 +2,9 @@
 
 set -eu
 
+BIN_PATH=`cd "$(dirname $0)" && pwd`
+source "$BIN_PATH/env"
+
 aws cloudformation cancel-update-stack \
-  --profile static-website-sample \
-  --stack-name static-website
+  --profile $PROFILE \
+  --stack-name $STACK_NAME
