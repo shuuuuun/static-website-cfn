@@ -99,7 +99,7 @@ Resources:
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
-      # RoleName: LambdaExecutionRole
+      RoleName: LambdaExecutionRole
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:

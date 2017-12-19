@@ -3,7 +3,7 @@
 PROFILE="static-website-sample"
 STACK_NAME="static-website"
 REGION="ap-northeast-1"
-CAPABILITIES="CAPABILITY_IAM"
+CAPABILITIES="CAPABILITY_NAMED_IAM"
 TEMPLATE_BODY="file://cloudformation.yml"
 
 echo "profile: $PROFILE"
