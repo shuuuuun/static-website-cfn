@@ -15,4 +15,4 @@ res=`aws lambda publish-version \
   --function-name $FUNCTION_NAME`
 
 echo "$res"
-echo "$res" | jq -r ".Version" > ./lambda_func_version.txt
+echo "$res" | jq -r ".FunctionArn" > ./lambda_func_arn.txt
