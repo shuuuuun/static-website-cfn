@@ -5,9 +5,12 @@ set -eu
 BIN_PATH=`cd "$(dirname $0)" && pwd`
 source "$BIN_PATH/env"
 
+lambda_func_version=`cat ./lambda_func_version.txt`
+
 aws cloudformation update-stack \
   --profile $PROFILE \
   --stack-name $STACK_NAME \
   --region $REGION \
   --capabilities $CAPABILITIES \
-  --template-body $TEMPLATE_BODY
+  --template-body $TEMPLATE_BODY \
+  --parameters ParameterKey=LambdaFunctionVersion,ParameterValue=$lambda_func_version
