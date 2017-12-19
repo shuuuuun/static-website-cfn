@@ -6,8 +6,8 @@ BIN_PATH=`cd "$(dirname $0)" && pwd`
 source "$BIN_PATH/env"
 
 aws cloudformation list-stacks \
-  --profile $PROFILE
+  --profile $AWS_PROFILE
 
 # 詳細情報
 # aws cloudformation describe-stacks \
-#   --profile $PROFILE
+#   --profile $AWS_PROFILE

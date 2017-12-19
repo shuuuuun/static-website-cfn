@@ -6,8 +6,8 @@ BIN_PATH=`cd "$(dirname $0)" && pwd`
 source "$BIN_PATH/env"
 
 aws cloudformation create-stack \
-  --profile $PROFILE \
+  --profile $AWS_PROFILE \
   --stack-name $STACK_NAME \
-  --region $REGION \
+  --region $AWS_REGION \
   --capabilities $CAPABILITIES \
   --template-body $TEMPLATE_BODY
