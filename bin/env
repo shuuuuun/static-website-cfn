@@ -1,10 +1,19 @@
 #!/bin/sh
 
+AWS_ACCOUNT_ID="000000000000"
+AWS_PROFILE="static-website-sample"
+
 PROFILE="static-website-sample"
 STACK_NAME="static-website"
 REGION="ap-northeast-1"
 CAPABILITIES="CAPABILITY_NAMED_IAM"
 TEMPLATE_BODY="file://cloudformation.yml"
+
+LAMBDA_REGION="us-east-1"
+LAMBDA_ROLE="arn:aws:iam::$AWS_ACCOUNT_ID:role/LambdaExecutionRole"
+LAMBDA_RUNTIME="nodejs6.10"
+LAMBDA_HANDLER="index.handler"
+LAMBDA_TIMEOUT="1"
 
 echo "profile: $PROFILE"
 echo "stack_name: $STACK_NAME"

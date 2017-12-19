@@ -6,7 +6,7 @@ set -eu
 # TODO: bin/initとzip化など共通化
 
 ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
-source "$ROOT_PATH/bin/lambda-env"
+source "$ROOT_PATH/bin/env"
 
 FUNCTION_NAME="basic_auth"
 func_dir="$ROOT_PATH/functions/$FUNCTION_NAME"
@@ -18,16 +18,16 @@ cd "$func_dir"
 zip -r $tmp_file .
 
 aws lambda update-function-code \
-  --region $AWS_REGION \
+  --region $LAMBDA_REGION \
   --profile $AWS_PROFILE \
   --function-name $FUNCTION_NAME \
   --zip-file fileb://$tmp_file
 
 aws lambda update-function-configuration \
-  --region $AWS_REGION \
+  --region $LAMBDA_REGION \
   --profile $AWS_PROFILE \
   --function-name $FUNCTION_NAME \
-  --handler $HANDLER \
-  --timeout $TIMEOUT
+  --handler $LAMBDA_HANDLER \
+  --timeout $LAMBDA_TIMEOUT
 
 rm "$tmp_file"

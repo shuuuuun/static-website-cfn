@@ -10,7 +10,7 @@ source "$ROOT_PATH/bin/lambda-env"
 FUNCTION_NAME="basic_auth"
 
 res=`aws lambda publish-version \
-  --region $AWS_REGION \
+  --region $LAMBDA_REGION \
   --profile $AWS_PROFILE \
   --function-name $FUNCTION_NAME`
 
