@@ -9,7 +9,10 @@ source "$ROOT_PATH/bin/lambda-env"
 
 FUNCTION_NAME="basic_auth"
 
-aws lambda publish-version \
+res=`aws lambda publish-version \
   --region $AWS_REGION \
   --profile $AWS_PROFILE \
-  --function-name $FUNCTION_NAME
+  --function-name $FUNCTION_NAME`
+
+echo "$res"
+echo "$res" | jq -r ".Version" > ./lambda_func_version.txt
