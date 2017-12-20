@@ -17,4 +17,5 @@ aws lambda create-function \
   --runtime $LAMBDA_RUNTIME \
   --role $LAMBDA_ROLE \
   --handler $LAMBDA_HANDLER \
+  --timeout $LAMBDA_TIMEOUT \
   --zip-file fileb://$tmp_file
