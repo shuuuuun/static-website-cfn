@@ -2,8 +2,6 @@
 
 set -eu
 
-# TODO: 関数を指定できるようにする
-
 ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
 source "$ROOT_PATH/bin/lambda-env"
 

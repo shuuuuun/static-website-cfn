@@ -2,8 +2,6 @@
 
 set -eu
 
-# TODO: functions以下にある関数すべて作成する
-
 ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
 source "$ROOT_PATH/bin/env"
 
