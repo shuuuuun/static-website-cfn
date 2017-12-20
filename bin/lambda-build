@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+
+FUNCTION_NAME="basic_auth"
+func_dir="$ROOT_PATH/functions/$FUNCTION_NAME"
+tmp_file="tmp.zip"
+
+cd "$func_dir"
+yarn install
+zip -r $tmp_file .

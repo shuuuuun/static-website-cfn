@@ -6,11 +6,10 @@ ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
 source "$ROOT_PATH/env"
 
 FUNCTION_NAME="basic_auth"
-func_dir="$ROOT_PATH/functions/$FUNCTION_NAME"
-tmp_file="tmp.zip"
+tmp_file="functions/$FUNCTION_NAME/tmp.zip"
 
-cd "$ROOT_PATH"
-zip -r "$tmp_file" "$func_dir"
+"$ROOT_PATH/bin/lambda-build"
+
 aws lambda create-function \
   --region $LAMBDA_REGION \
   --profile $AWS_PROFILE \
