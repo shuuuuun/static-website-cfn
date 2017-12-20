@@ -3,7 +3,7 @@
 set -eu
 
 ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
-source "$ROOT_PATH/bin/env"
+source "$ROOT_PATH/env"
 
 FUNCTION_NAME="basic_auth"
 func_dir="$ROOT_PATH/functions/$FUNCTION_NAME"

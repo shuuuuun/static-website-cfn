@@ -2,8 +2,8 @@
 
 set -eu
 
-BIN_PATH=`cd "$(dirname $0)" && pwd`
-source "$BIN_PATH/env"
+ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+source "$ROOT_PATH/env"
 
 aws cloudformation list-stacks \
   --profile $AWS_PROFILE
