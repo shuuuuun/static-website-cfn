@@ -13,6 +13,9 @@ Parameters:
     Type: String
     Default: ''
 
+Conditions:
+  ExistLambdaFunctionARN: !Not [!Equals [ !Ref LambdaFunctionARN, '' ]]
+
 Resources:
   ######
   # S3
@@ -76,8 +79,12 @@ Resources:
             QueryString: true
           Compress: true
           LambdaFunctionAssociations:
-          - EventType: viewer-request
-            LambdaFunctionARN: !Sub ${LambdaFunctionARN}
+            !If
+              - ExistLambdaFunctionARN
+              -
+                - EventType: viewer-request
+                  LambdaFunctionARN: !Sub ${LambdaFunctionARN}
+              - !Ref AWS::NoValue
         ViewerCertificate:
           CloudFrontDefaultCertificate: true
         HttpVersion: http2
