@@ -13,4 +13,4 @@ aws cloudformation create-stack \
   --template-body $TEMPLATE_BODY \
   --parameters \
     ParameterKey="ProjectName",ParameterValue=$PROJECT_NAME \
-    ParameterKey="Stage",ParameterValue=$STAGE
+    ParameterKey="CfComment",ParameterValue=$CF_COMMENT

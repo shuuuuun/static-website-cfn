@@ -6,7 +6,7 @@ Parameters:
   ProjectName:
     Type: String
     Default: ''
-  Stage:
+  CfComment:
     Type: String
     Default: ''
   LambdaFunctionARN:
@@ -89,7 +89,7 @@ Resources:
           CloudFrontDefaultCertificate: true
         HttpVersion: http2
         DefaultRootObject: index.html
-        Comment: !Sub ${Stage}
+        Comment: !Sub ${CfComment}
         Enabled: true
     DeletionPolicy: Retain
 
