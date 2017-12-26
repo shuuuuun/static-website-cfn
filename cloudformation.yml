@@ -5,10 +5,10 @@ AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   ProjectName:
     Type: String
-    Default: static-website-sample-stg
+    Default: ''
   Stage:
     Type: String
-    Default: Staging
+    Default: ''
   LambdaFunctionARN:
     Type: String
     Default: ''

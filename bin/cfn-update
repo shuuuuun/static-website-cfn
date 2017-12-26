@@ -13,4 +13,7 @@ aws cloudformation update-stack \
   --region $AWS_REGION \
   --capabilities $CAPABILITIES \
   --template-body $TEMPLATE_BODY \
-  --parameters ParameterKey=LambdaFunctionARN,ParameterValue=$lambda_func_arn
+  --parameters \
+    ParameterKey="ProjectName",ParameterValue=$PROJECT_NAME \
+    ParameterKey="Stage",ParameterValue=$STAGE \
+    ParameterKey="LambdaFunctionARN",ParameterValue=$lambda_func_arn
