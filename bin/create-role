@@ -1,0 +1,43 @@
+#!/bin/sh
+
+set -eu
+
+ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+source "$ROOT_PATH/env"
+
+managed_policy_arns=(
+  "arn:aws:iam::aws:policy/service-role/AWSLambdaRole"
+  "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
+)
+
+assume_role_policy_document=$(jq -c . <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "edgelambda.amazonaws.com",
+          "lambda.amazonaws.com"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+)
+
+aws iam create-role \
+  --profile $AWS_PROFILE \
+  --role-name $LAMBDA_ROLE_NAME \
+  --assume-role-policy-document "$assume_role_policy_document"
+  # --assume-role-policy-document file://lambda_role_trust_policy.json
+
+for policy_arn in "${managed_policy_arns[@]}"; do
+  aws iam attach-role-policy \
+    --profile $AWS_PROFILE \
+    --role-name $LAMBDA_ROLE_NAME \
+    --policy-arn $policy_arn
+done
