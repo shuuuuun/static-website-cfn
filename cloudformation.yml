@@ -92,38 +92,3 @@ Resources:
         Comment: !Sub ${CfComment}
         Enabled: true
     DeletionPolicy: Retain
-
-  ######
-  # Lambda
-  ######
-  # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/quickref-lambda.html
-  # http://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
-  # BasicAuthFunction:
-  #   Type: AWS::Lambda::Function
-  #   Properties: 
-  #     Code:
-  #       ZipFile:
-  #     FunctionName: basic_auth
-  #     Handler: index.handler
-  #     Role: arn:aws:iam::000000000000:role/LambdaRole
-  #     Runtime: nodejs6.10
-  #     Timeout: 1
-
-  LambdaExecutionRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: LambdaExecutionRole
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-        - Effect: Allow
-          Principal:
-            Service:
-            - lambda.amazonaws.com
-            - edgelambda.amazonaws.com
-          Action:
-          - sts:AssumeRole
-      ManagedPolicyArns:
-      - arn:aws:iam::aws:policy/service-role/AWSLambdaRole
-      - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
-    DeletionPolicy: Retain
