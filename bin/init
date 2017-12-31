@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -eu
+
+ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+
+"$ROOT_PATH/bin/create-role"
+"$ROOT_PATH/bin/lambda-init"
+"$ROOT_PATH/bin/lambda-publish"
+"$ROOT_PATH/bin/cfn-init"
