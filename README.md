@@ -1,6 +1,6 @@
 # static-website-cfn
 
-## how to use
+## How to use
 
 1. プロジェクトのディレクトリにファイルをコピー
 1. envファイルの中身を状況に合わせて変更
@@ -8,7 +8,7 @@
 1. `bin/init`を実行
 1. `lambda_func_arn.txt`が更新されるのでコミットするとよいでしょう
 
-### notes
+## Notes
 
 * `bin/init`の中身は下記を実行している
     1. `bin/create-role`
