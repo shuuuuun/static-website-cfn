@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+
+ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+source "$ROOT_PATH/env"
+
+aws s3 cp \
+  --region $AWS_REGION \
+  --profile $AWS_PROFILE \
+  index.html s3://$PROJECT_NAME/
