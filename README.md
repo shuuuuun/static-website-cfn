@@ -25,3 +25,7 @@
 * CFnの設定(CFやS3の設定)を変更した場合は、`bin/cfn-update`を実行する
 * lambda関数を変更した場合は、`bin/lambda-deploy`, `bin/lambda-publish`, `bin/cfn-update`を実行する
 * `bin/cf-wait`というCFのデプロイ完了を教えてくれる便利コマンドもあるよ
+
+## Diagram
+
+![diagram](https://user-images.githubusercontent.com/7542105/34598264-f970ac20-f22e-11e7-8c8c-8454fc3a4ac6.png)
