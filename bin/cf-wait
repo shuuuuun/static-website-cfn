@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -eu
+
+ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+source "$ROOT_PATH/env"
+
+# distribution一覧を取得
+distribution_data=$(aws cloudfront list-distributions --profile $AWS_PROFILE)
+# distributions=($(echo $distribution_data | jq -r '.DistributionList.Items[] | [.Id, .Status, .DomainName, .Aliases.Items[], .Comment] | @csv'))
+distributions=($(echo $distribution_data | jq -r '.DistributionList.Items[] | [.Id, .Status, .DomainName, .Comment] | @csv'))
+distribution_ids=($(echo $distribution_data | jq -r '.DistributionList.Items[].Id'))
+
+# どのdistributionにするか選択
+length="${#distributions[@]}"
+for index in $(seq $length); do
+  echo "$index: ${distributions[(($index - 1))]}"
+done
+
+idx_list=$(seq $length | tr "\n" "/" | sed -e "s/\/$//g")
+echo -n "which distribution? ($idx_list) "
+read answer
+
+idx=$answer
+if [[ -z "$answer" ]]; then
+  idx="1"
+fi
+distribution_id="${distribution_ids[(($idx - 1))]}"
+if [[ -z "$distribution_id" ]]; then
+  echo "invalid."
+  exit 1
+fi
+echo "$idx: $distribution_id"
+echo "waiting..."
+
+aws cloudfront wait distribution-deployed \
+  --profile $AWS_PROFILE \
+  --id $distribution_id \
+  && echo -e 'Deployed!\a'
