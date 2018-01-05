@@ -6,6 +6,7 @@ ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
 source "$ROOT_PATH/env"
 
 aws cloudformation list-stacks \
+  --region $AWS_REGION \
   --profile $AWS_PROFILE
 
 # 詳細情報
