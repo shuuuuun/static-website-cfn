@@ -31,6 +31,10 @@
 
 ![diagram](https://user-images.githubusercontent.com/7542105/34598264-f970ac20-f22e-11e7-8c8c-8454fc3a4ac6.png)
 
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/shuuuuun/static-website-cfn.
+
 ## License
 
 Copyright (c) 2016 shuuuuun  
