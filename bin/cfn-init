@@ -5,6 +5,8 @@ set -eu
 ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
 source "$ROOT_PATH/env"
 
+lambda_func_arn=`cat ./lambda_func_arn.txt`
+
 aws cloudformation create-stack \
   --profile $AWS_PROFILE \
   --stack-name $STACK_NAME \
@@ -13,4 +15,5 @@ aws cloudformation create-stack \
   --template-body $TEMPLATE_BODY \
   --parameters \
     ParameterKey="ProjectName",ParameterValue=$PROJECT_NAME \
-    ParameterKey="CfComment",ParameterValue=$CF_COMMENT
+    ParameterKey="CfComment",ParameterValue=$CF_COMMENT \
+    ParameterKey="LambdaFunctionARN",ParameterValue=$lambda_func_arn
