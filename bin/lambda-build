@@ -9,5 +9,7 @@ func_dir="$ROOT_PATH/functions/$FUNCTION_NAME"
 tmp_file="tmp.zip"
 
 cd "$func_dir"
-yarn install
+if [ -f "./package.json" ]; then
+  yarn install
+fi
 zip -r $tmp_file .
