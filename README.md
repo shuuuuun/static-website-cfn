@@ -37,6 +37,6 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/shuuuu
 
 ## License
 
-Copyright (c) 2016 shuuuuun  
+Copyright (c) 2018 shuuuuun  
 Released under the MIT license  
 http://opensource.org/licenses/mit-license.php
