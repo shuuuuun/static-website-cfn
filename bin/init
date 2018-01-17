@@ -4,7 +4,14 @@ set -eu
 
 ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
 
+echo "...creating role..."
 "$ROOT_PATH/bin/create-role"
+
+echo "...initializing lambda fanction..."
 "$ROOT_PATH/bin/lambda-init"
+
+echo "...publishing lambda fanction..."
 "$ROOT_PATH/bin/lambda-publish"
+
+echo "...initializing cloudformation..."
 "$ROOT_PATH/bin/cfn-init"
