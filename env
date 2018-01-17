@@ -4,6 +4,7 @@ AWS_ACCOUNT_ID="000000000000"
 AWS_PROFILE="static-website-sample"
 AWS_REGION="ap-northeast-1"
 
+# STAGE="production"
 STAGE="staging"
 STACK_NAME="static-website-$STAGE"
 PROJECT_NAME="static-website-sample-$STAGE"
