@@ -8,4 +8,4 @@ source "$ROOT_PATH/env"
 aws s3 cp \
   --region $AWS_REGION \
   --profile $AWS_PROFILE \
-  index.html s3://$PROJECT_NAME/
+  "$ROOT_PATH/index.html" s3://$PROJECT_NAME/
