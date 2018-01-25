@@ -7,7 +7,7 @@
 1. プロジェクトのディレクトリにファイルをコピー
 1. envファイルの中身を状況に合わせて変更
 1. `functions/basic_auth/`以下の`allow-ips.js`, `allow-passwd.js`, `allow-uas.js`を適宜変更
-1. `bin/init`を実行
+1. `bin/init`を実行 （※失敗したら中身のコマンドを順番に実行する）
 1. `lambda_func_arn.txt`が更新されるのでコミットするとよいでしょう
 1. S3に適当なhtmlファイルを置いて確認してみましょう
     * `bin/s3-upload-sample`でサンプルhtmlをアップロードできます
