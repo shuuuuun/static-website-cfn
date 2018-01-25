@@ -12,6 +12,7 @@ CF_COMMENT="$STAGE"
 CAPABILITIES="CAPABILITY_NAMED_IAM"
 TEMPLATE_BODY="file://$ROOT_PATH/cloudformation.yml" # require ROOT_PATH env.
 
+FUNCTION_NAME="basic_auth"
 LAMBDA_REGION="us-east-1"
 LAMBDA_ROLE_NAME="LambdaExecutionRole"
 LAMBDA_ROLE="arn:aws:iam::$AWS_ACCOUNT_ID:role/$LAMBDA_ROLE_NAME"

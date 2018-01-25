@@ -1,14 +1,14 @@
 #!/bin/sh
 
-set -eu
+set -e
 
 ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+FUNCTION_NAME="$1"
 source "$ROOT_PATH/env"
 
-FUNCTION_NAME="basic_auth"
 tmp_file="$ROOT_PATH/functions/$FUNCTION_NAME/tmp.zip"
 
-"$ROOT_PATH/bin/lambda-build"
+"$ROOT_PATH/bin/lambda-build" $FUNCTION_NAME
 
 aws lambda create-function \
   --region $LAMBDA_REGION \

@@ -1,11 +1,10 @@
 #!/bin/sh
 
-set -eu
+set -e
 
 ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
+FUNCTION_NAME="$1"
 source "$ROOT_PATH/env"
-
-FUNCTION_NAME="basic_auth"
 
 res=`aws lambda publish-version \
   --region $LAMBDA_REGION \
