@@ -6,7 +6,7 @@ ROOT_PATH="$(cd "$(dirname $0)/../"; pwd)"
 source "$ROOT_PATH/env"
 
 FUNCTION_NAME="basic_auth"
-tmp_file="functions/$FUNCTION_NAME/tmp.zip"
+tmp_file="$ROOT_PATH/functions/$FUNCTION_NAME/tmp.zip"
 
 "$ROOT_PATH/bin/lambda-build"
 
