@@ -16,7 +16,7 @@ FUNCTION_NAME="basic_auth"
 LAMBDA_REGION="us-east-1"
 LAMBDA_ROLE_NAME="LambdaExecutionRole"
 LAMBDA_ROLE="arn:aws:iam::$AWS_ACCOUNT_ID:role/$LAMBDA_ROLE_NAME"
-LAMBDA_RUNTIME="nodejs6.10"
+LAMBDA_RUNTIME="nodejs8.10"
 LAMBDA_HANDLER="index.handler"
 LAMBDA_TIMEOUT="1"
 
