@@ -16,4 +16,5 @@ aws cloudformation create-stack \
   --parameters \
     ParameterKey="ProjectName",ParameterValue=$PROJECT_NAME \
     ParameterKey="CfComment",ParameterValue=$CF_COMMENT \
-    ParameterKey="LambdaFunctionARN",ParameterValue=$lambda_func_arn
+    ParameterKey="LambdaFunctionARN",ParameterValue=$lambda_func_arn \
+    ParameterKey="UserAgentForAccessRestriction",ParameterValue=$USER_AGENT_FOR_ACCESS_RESTRICTION

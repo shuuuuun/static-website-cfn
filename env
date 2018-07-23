@@ -9,6 +9,7 @@ STAGE="staging"
 STACK_NAME="static-website-$STAGE"
 PROJECT_NAME="static-website-sample-$STAGE"
 CF_COMMENT="$STAGE"
+USER_AGENT_FOR_ACCESS_RESTRICTION=""
 CAPABILITIES="CAPABILITY_NAMED_IAM"
 TEMPLATE_BODY="file://$ROOT_PATH/cloudformation.yml" # require ROOT_PATH env.
 

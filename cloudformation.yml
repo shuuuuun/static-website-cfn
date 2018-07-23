@@ -12,9 +12,13 @@ Parameters:
   LambdaFunctionARN:
     Type: String
     Default: ''
+  UserAgentForAccessRestriction:
+    Type: String
+    Default: ''
 
 Conditions:
   ExistLambdaFunctionARN: !Not [!Equals [ !Ref LambdaFunctionARN, '' ]]
+  ExistUserAgent: !Not [!Equals [ !Ref UserAgentForAccessRestriction, '' ]]
 
 Resources:
   ######
@@ -45,6 +49,12 @@ Resources:
               - - 'arn:aws:s3:::'
                 - !Ref myS3Bucket
                 - /*
+            Condition:
+              !If
+                - ExistUserAgent
+                - StringEquals:
+                    aws:UserAgent: !Sub ${UserAgentForAccessRestriction}
+                - !Ref AWS::NoValue
       Bucket: !Ref myS3Bucket
     DeletionPolicy: Retain
 
@@ -64,6 +74,12 @@ Resources:
           #   OriginAccessIdentity: ''
           CustomOriginConfig:
             OriginProtocolPolicy: http-only
+          OriginCustomHeaders:
+            - !If
+                - ExistUserAgent
+                - HeaderName: User-Agent
+                  HeaderValue: !Sub ${UserAgentForAccessRestriction}
+                - !Ref AWS::NoValue
         DefaultCacheBehavior:
           TargetOriginId: !Sub S3-Website-${ProjectName}.s3-website-${AWS::Region}.amazonaws.com
           ViewerProtocolPolicy: allow-all
