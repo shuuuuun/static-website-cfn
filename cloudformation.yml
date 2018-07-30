@@ -82,8 +82,8 @@ Resources:
                 - !Ref AWS::NoValue
         DefaultCacheBehavior:
           TargetOriginId: !Sub S3-Website-${ProjectName}.s3-website-${AWS::Region}.amazonaws.com
-          ViewerProtocolPolicy: allow-all
-          # ViewerProtocolPolicy: redirect-to-https
+          # ViewerProtocolPolicy: allow-all
+          ViewerProtocolPolicy: redirect-to-https
           AllowedMethods:
           - GET
           - HEAD
