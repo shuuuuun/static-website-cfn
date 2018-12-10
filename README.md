@@ -25,6 +25,7 @@
     ```
     $ STAGE=production bin/cfn-init
     ```
+* envファイルの`USER_AGENT_FOR_ACCESS_RESTRICTION`に適当な文字列を設定すると、UserAgentヘッダを利用してS3への直アクセスを概ね防止できます
 * CFnの設定(CFやS3の設定)を変更した場合は、`bin/cfn-update`を実行する
 * lambda関数を変更した場合は、`bin/lambda-deploy`, `bin/lambda-publish`, `bin/cfn-update`を実行する
 * `bin/cf-wait`というCFのデプロイ完了を教えてくれる便利コマンドもあるよ
