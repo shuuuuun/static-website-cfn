@@ -29,7 +29,7 @@ Resources:
   myS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub ${ProjectName}
+      BucketName: !Sub ${AWS::StackName}
       WebsiteConfiguration:
         IndexDocument: index.html
     DeletionPolicy: Retain
@@ -68,8 +68,17 @@ Resources:
     Properties:
       DistributionConfig:
         Origins:
-        - DomainName: !Sub ${ProjectName}.s3-website-${AWS::Region}.amazonaws.com
-          Id: !Sub S3-Website-${ProjectName}.s3-website-${AWS::Region}.amazonaws.com
+        - DomainName: !Join
+            - ''
+            -
+              - !Ref myS3Bucket
+              - !Sub .s3-website-${AWS::Region}.amazonaws.com
+          Id: !Join
+            - ''
+            -
+              - S3-Website-
+              - !Ref myS3Bucket
+              - !Sub .s3-website-${AWS::Region}.amazonaws.com
           # S3OriginConfig:
           #   OriginAccessIdentity: ''
           CustomOriginConfig:
@@ -81,7 +90,12 @@ Resources:
                   HeaderValue: !Sub ${UserAgentForAccessRestriction}
                 - !Ref AWS::NoValue
         DefaultCacheBehavior:
-          TargetOriginId: !Sub S3-Website-${ProjectName}.s3-website-${AWS::Region}.amazonaws.com
+          TargetOriginId: !Join
+            - ''
+            -
+              - S3-Website-
+              - !Ref myS3Bucket
+              - !Sub .s3-website-${AWS::Region}.amazonaws.com
           # ViewerProtocolPolicy: allow-all
           ViewerProtocolPolicy: redirect-to-https
           AllowedMethods:
