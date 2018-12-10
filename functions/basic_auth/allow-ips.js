@@ -1,5 +1,5 @@
-const private = [
-  '192.168.1.1', // sample
+const myIP = [
+  '1.2.3.4', // sample
 ];
 
 // cf. https://developers.facebook.com/docs/sharing/webmasters/crawler
@@ -360,4 +360,4 @@ const twitter = [
   '2a04:9d40::/29',
 ];
 
-module.exports = [].concat(private).concat(facebook).concat(twitter);
+module.exports = [].concat(myIP).concat(facebook).concat(twitter);
