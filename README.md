@@ -21,11 +21,15 @@
     1. `bin/lambda-init`
     1. `bin/lambda-publish`
     1. `bin/cfn-init`
-* staging/productionなどステージを分けて作成する場合は、envファイルの`STAGE`変数を変更し、`bin/cfn-init`を実行する
+* productionなど別のステージを作成する場合は、環境変数STAGEを設定して`bin/cfn-init`を実行する（デフォルトはstaging）
+    ```
+    $ STAGE=production bin/cfn-init
+    ```
 * CFnの設定(CFやS3の設定)を変更した場合は、`bin/cfn-update`を実行する
 * lambda関数を変更した場合は、`bin/lambda-deploy`, `bin/lambda-publish`, `bin/cfn-update`を実行する
 * `bin/cf-wait`というCFのデプロイ完了を教えてくれる便利コマンドもあるよ
 * このCFnでずっと運用するというよりは、初期設定をミスなく手軽にしようというくらいのイメージです
+    * 手動でCFやS3などの設定を変えた場合は、その後CFnデプロイすると元に戻ってしまうので注意！
 
 ## Diagram
 
