@@ -10,6 +10,10 @@ tmp_file="tmp.zip"
 
 cd "$func_dir"
 if [ -f "./package.json" ]; then
-  yarn install
+  if [ -f "./yarn.lock" ]; then
+    yarn install
+  else
+    npm install
+  fi
 fi
 zip -r $tmp_file .
